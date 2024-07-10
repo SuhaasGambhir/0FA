@@ -12,7 +12,9 @@ call env\Scripts\activate
 
 @echo now in Environment
 pip install -r requirements.txt
+
 playwright install
+
 @echo ####################
 @echo Finished setup, dropping into command prompt.
 @echo I reccommend setting up database using, if it hasn't been initialised yet.

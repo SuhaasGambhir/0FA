@@ -1,5 +1,6 @@
-import re
-from playwright.sync_api import Playwright, sync_playwright, expect
+import sys
+
+from playwright.sync_api import Playwright, sync_playwright
 # -- for totp
 import base64
 import hmac
@@ -44,5 +45,14 @@ def run(playwright: Playwright) -> None:
     # browser.close()
 
 
-with sync_playwright() as playwright:
-    run(playwright)
+if __name__ == "__main__":
+    print(passw)
+    if len(sys.argv) > 2:
+        print("Usage: python script.py [password]")
+        sys.exit(1)
+
+    if len(sys.argv) > 1:
+        details.password = sys.argv[1]
+    
+    with sync_playwright() as playwright:
+        run(playwright)
