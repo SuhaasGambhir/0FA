@@ -1,4 +1,6 @@
+
 import sys
+import getpass
 
 from playwright.sync_api import Playwright, sync_playwright
 # -- for totp
@@ -22,7 +24,7 @@ def totp(key, time_step=30, digits=6, digest='sha1'):
     binary = struct.unpack('>L', mac[offset:offset+4])[0] & 0x7fffffff
     return str(binary)[-digits:].zfill(digits)
 
-passw = totp(details.key)
+passw = "012345"
 
 def run(playwright: Playwright) -> None:
     # browser = playwright.chromium.launch(headless=False)  # Chrome
@@ -46,13 +48,17 @@ def run(playwright: Playwright) -> None:
 
 
 if __name__ == "__main__":
-    print(passw)
-    if len(sys.argv) > 2:
-        print("Usage: python script.py [password]")
-        sys.exit(1)
-
     if len(sys.argv) > 1:
-        details.password = sys.argv[1]
+        print("Usage: python script.py")
+        sys.exit(1)
+    # Bad solution
+    #if len(sys.argv) > 1:
+    #    details.password = sys.argv[1]
     
+    if not hasattr(details, 'password'):
+        details.password = getpass.getpass(prompt="Enter your password: ")
+
+    passw = totp(details.key)
+    # print(passw)
     with sync_playwright() as playwright:
         run(playwright)
