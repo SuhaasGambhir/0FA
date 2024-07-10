@@ -7,13 +7,10 @@ import struct
 import time
 # import pyotp
 
-class details: 
-    key = ""
-    # issue = "mq.okta.com"
-    # user_name = "student_id@mqauth.uni.mq.edu.au"
-    # uri = pyotp.totp.TOTP(key).provisioning_uri(name=user_name, issuer_name=issue)
-    username = ""
-    password = ""
+
+
+import config
+
 
 # source: https://github.com/susam/mintotp?tab=readme-ov-file
 def totp(key, time_step=30, digits=6, digest='sha1'):
