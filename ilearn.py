@@ -9,7 +9,7 @@ import time
 
 
 
-import config
+from config import details as details
 
 
 # source: https://github.com/susam/mintotp?tab=readme-ov-file
@@ -24,9 +24,10 @@ def totp(key, time_step=30, digits=6, digest='sha1'):
 passw = totp(details.key)
 
 def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    # browser = playwright.chromium.launch(headless=False)  # Chrome
+    browser = playwright.webkit.launch(headless=False)      # Edge?
     context = browser.new_context()
-    page = context.page[0]
+    page = context.new_page()
     page.goto("https://ilearn.mq.edu.au/login/")
     page.get_by_role("link", name="Login", exact=True).click()
     page.get_by_label("Student ID / OneID").fill(details.username) # OneID
