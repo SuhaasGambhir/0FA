@@ -1,0 +1,17 @@
+{
+    "name" : "rand word",
+    "version" : "1.0.0",
+    "description" : "Example that fetches a random word",
+    "icons": {
+      "16" : "icons/0FA-icon-16.png",
+      "32" : "icons/0FA-icon-32.png",
+      "64" : "icons/0FA-icon-64.png",
+      "128": "icons/0FA-icon-128.png"
+  },
+    "manifest_version" : 3,
+    "author" : "0FA team",
+    "action" : {
+        "default_popup" : "index.html",
+        "default_title" : "Rand word"
+    }
+}
