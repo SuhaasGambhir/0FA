@@ -24,13 +24,13 @@ def totp(key, time_step=30, digits=6, digest='sha1'):
     binary = struct.unpack('>L', mac[offset:offset+4])[0] & 0x7fffffff
     return str(binary)[-digits:].zfill(digits)
 
-passw = "012345"
 
 def run(playwright: Playwright) -> None:
-    # browser = playwright.chromium.launch(headless=False)  # Chrome
-    browser = playwright.webkit.launch(headless=False)      # Edge?
+    browser = playwright.chromium.launch(headless=False)  # Chrome
+    #browser = playwright.webkit.launch(headless=False)      # Edge?
     context = browser.new_context()
     page = context.new_page()
+    passw = totp(details.key)
     page.goto("https://ilearn.mq.edu.au/login/")
     page.get_by_role("link", name="Login", exact=True).click()
     page.get_by_label("Student ID / OneID").fill(details.username) # OneID
@@ -58,7 +58,13 @@ if __name__ == "__main__":
     if not hasattr(details, 'password'):
         details.password = getpass.getpass(prompt="Enter your password: ")
 
-    passw = totp(details.key)
+    
     # print(passw)
-    with sync_playwright() as playwright:
+    #with sync_playwright() as playwright:
+    #    run(playwright)
+
+    playwright = sync_playwright().start()
+    try:
         run(playwright)
+    finally:
+        print("ending script")

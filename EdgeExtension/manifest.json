@@ -1,0 +1,11 @@
+{
+    "name" : "rand word",
+    "version" : "1.0.0",
+    "description" : "Example that fetches a random word",
+    "manifest_version" : 3,
+    "author" : "0FA team",
+    "action" : {
+        "default_popup" : "index.html",
+        "default_title" : "Rand word"
+    }
+}
