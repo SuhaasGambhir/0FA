@@ -69,23 +69,29 @@ function generateTOTP(secret) {
     }
   
     // Navigate to the login page
-    window.location.href = 'https://ilearn.mq.edu.au/login/';
+    // GPT generated an infinite loop of nonsense.
+    // Goto this page when on this page...
+    //window.location.href = 'https://ilearn.mq.edu.au/login/';
   
     // Wait a bit for the page to load (adjust as needed)
     setTimeout(() => {
       // Click on the login link
-      const loginLink = document.querySelector('a[href="/login"]');
+      // GPT guess
+      //const loginLink = document.querySelector('a[href="/login"]');
+      // alternate GPT solution
+      //const loginLink = document.querySelector('.btn.login-identityprovider-btn.btn-block');
+      const loginLink = document.querySelector('a[class="btn login-identityprovider-btn btn-block"]');
       if (loginLink) {
         simulateClick(loginLink);
   
         // Wait for the login form to appear
         setTimeout(() => {
           // Fill in the form fields
-          fillFormField('input[name="OneID"]', 'your_username');
-          fillFormField('input[name="Password"]', 'your_password');
+          //fillFormField('input[name="OneID"]', 'your_username');
+          //fillFormField('input[name="Password"]', 'your_password');
   
           // Optionally, click on the login button
-          const loginButton = document.querySelector('button[name="Sign in"]');
+          const loginButton = document.querySelector('a[class="button button-primary"]');
           if (loginButton) {
             simulateClick(loginButton);
   
@@ -102,11 +108,11 @@ function generateTOTP(secret) {
               } else {
                 console.error('Verify button not found.');
               }
-            }, 2000); // Adjust delay as needed
+            }, 6000); // Adjust delay as needed
           } else {
             console.error('Login button not found.');
           }
-        }, 2000); // Adjust delay as needed
+        }, 4000); // Adjust delay as needed
       } else {
         console.error('Login link not found.');
       }
