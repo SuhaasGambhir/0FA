@@ -67,7 +67,20 @@ function generateTOTP(secret) {
         console.error(`Field ${selector} not found.`);
       }
     }
+
+    // Function to wait for the page to load
+    function waitForPageLoad() {
+      return new Promise((resolve) => {
+        if (document.readyState === 'complete') {
+          resolve();
+        } else {
+          window.addEventListener('load', resolve);
+        }
+      });
+    }
   
+    
+    /*
     // Navigate to the login page
     // GPT generated an infinite loop of nonsense.
     // Goto this page when on this page...
@@ -117,4 +130,21 @@ function generateTOTP(secret) {
         console.error('Login link not found.');
       }
     }, 2000); // Adjust delay as needed
+    // */
+
+    //*
+
+    //(async () => {
+      //console.log('trying to click next');
+      //waitForPageLoad()
+      console.log('trying to click next');
+      const loginButton = document.querySelector('a[class="btn login-identityprovider-btn btn-block"]');
+      if (loginButton) {
+        simulateClick(loginButton);
+      }
+      waitForPageLoad()
+      console.log('trying to click next next');
+    //})();
+    // */
+
   });
